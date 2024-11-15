@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practise 4 Registration Form</title>
+  <!--styling part for interface for regitration form -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2; 
+    }
+
+    header {
+      text-align: center;
+      margin: 0;
+      padding: 20px 0;
+      background-color: #001f3f; 
+      color: white;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      display: block;
+      width: 80%; 
+      height: 4px; 
+      background-color: white; 
+      margin: 10px auto 0; 
+      border-radius: 2px; 
+    }
+
+    header img {
+      position: absolute;
+      top: 10px;
+      right: 30px;
+      width: 80px; 
+      height: auto;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      text-align: center;
+      background-color: #001f3f; 
+      color: white; 
+      padding: 10px;
+      margin: 0 -20px 20px -20px; 
+      border-radius: 10px 10px 0 0; 
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    #error {
+      color: red;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #success {
+      color: green;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+    }
+
+    footer a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Practise 4: Registration Form
+    <!-- Yerel dosya yolu-->
+    <img src="data:image/png;base64,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" alt="Logo" />
+  </header>
+  <form onsubmit="validate(); return false">
+    <h3>Registration Form</h3>
+
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" />
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" />
+    </div>
+
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" />
+    </div>
+
+    <div>
+      <label>Gender:</label>
+      <input type="radio" name="gender" value="man" id="gender_man" /> Male
+      <input type="radio" name="gender" value="woman" id="gender_woman" /> Female
+    </div>
+
+    <div>
+      <label for="country">Country:</label>
+      <select id="country">
+        <option value="">--Select a country--</option>
+        <option value="ukraine">Ukraine</option>
+        <option value="turkey">Turkey</option>
+        <option value="china">China</option>
+        <option value="germany">Germany</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="hobbies">Hobbies:</label>
+      <textarea id="hobbies" rows="3" placeholder="List your hobbies here"></textarea>
+    </div>
+
+    <div>
+      <label>
+        <input type="checkbox" id="newsletter" />
+        Subscribe to the newsletter
+      </label>
+    </div>
+
+    <div>
+      <input type="submit" id="submit" value="Submit" />
+    </div>
+  </form>
+
+  <div id="error"></div>
+  <div id="success"></div>
+
+  <footer>
+    <p>Contact: <a href="mailto:demirazad52@gmail.com">demirazad52@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/demirazad52" target="_blank">https://github.com/demirazad52</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/ramazan-demir-05604a202" target="_blank">www.linkedin.com/in/ramazan-demir-05604a202</a></p>
+  </footer>
+</body>
+</html>
